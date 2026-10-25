@@ -81,19 +81,18 @@ HF_HOME=/workspace/.hf_home hf download google/paligemma-3b-pt-224 \
   --exclude '*.safetensors' --exclude '*.bin' --exclude '*.msgpack'
 ```
 
-Download RoboTwin's public `embodiments.zip` and `objects.zip` assets from
-[`TianxingChen/RoboTwin2.0`](https://huggingface.co/datasets/TianxingChen/RoboTwin2.0),
-extract them under `RoboTwin/assets`, then run:
+Apply the pinned SAPIEN/MPLib compatibility patches, download RoboTwin's public
+`embodiments.zip` and `objects.zip` assets, and update embodiment paths:
 
 ```bash
 cd /workspace/robotwin_eval/RoboTwin
-../lerobot/.venv/bin/python script/update_embodiment_config_path.py
+../lerobot/.venv/bin/python ../prepare_robotwin_runtime.py
 ```
 
-RoboTwin's installer also applies small compatibility patches to `mplib==0.2.1`
-and `sapien==3.0.0b1`; the pinned
+The helper mirrors the small compatibility patches in the pinned
 [`Dockerfile.benchmark.robotwin`](https://github.com/RahulSChand/lerobot/blob/5502f49040f91dff8d115d49ad294b8619ff53e5/docker/Dockerfile.benchmark.robotwin)
-is the authoritative reference for those patches and asset steps.
+and intentionally skips the optional ~11 GB background-texture archive used only
+for randomized scenes.
 
 Load the runtime environment:
 
