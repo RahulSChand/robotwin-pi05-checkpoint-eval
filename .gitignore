@@ -1,0 +1,10 @@
+/.cache/
+/benchmarks/
+/checkpoints/
+/logs/
+/outputs/
+/results/
+/sweep_cache/
+*.pyc
+__pycache__/
+
